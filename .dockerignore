@@ -1,0 +1,28 @@
+# Dependencies
+node_modules/
+__pycache__/
+*.pyc
+.venv/
+
+# Environment Variables
+.env
+**/.env
+
+# AI Models (Downloded at runtime)
+models/*.h5
+models/*.keras
+models/*.pth
+models/*.pt
+models/*.pkl
+models/*.csv
+
+# System Files
+.DS_Store
+Thumbs.db
+uploads/
+
+# Build Output
+frontend/dist/
+
+# Git
+.git/

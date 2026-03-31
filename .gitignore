@@ -1,0 +1,24 @@
+# Secrets
+**/.env
+
+# Dependencies
+node_modules/
+__pycache__/
+*.pyc
+.venv/
+
+# AI Models (Too big for GitHub, users must download them separately)
+models/*.h5
+models/*.keras
+models/*.pth
+models/*.pt
+models/*.pkl
+models/*.csv
+
+# System Files
+.DS_Store
+Thumbs.db
+uploads/
+
+# Build output
+frontend/dist/
