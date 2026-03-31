@@ -11,7 +11,7 @@ FROM python:3.10-slim
 
 # Install Node.js 20 and system dependencies for OpenCV
 RUN apt-get update && \
-    apt-get install -y --no-install-recommends curl libgl1-mesa-glx libglib2.0-0 && \
+    apt-get install -y --no-install-recommends curl libgl1 libglx-mesa0 libglib2.0-0 && \
     curl -fsSL https://deb.nodesource.com/setup_20.x | bash - && \
     apt-get install -y --no-install-recommends nodejs && \
     rm -rf /var/lib/apt/lists/*
