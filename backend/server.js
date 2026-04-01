@@ -15,27 +15,31 @@ const rateLimit = require('express-rate-limit');
 
 const app = express();
 app.use(
-  helmet({
-    contentSecurityPolicy: {
-      directives: {
-        ...helmet.contentSecurityPolicy.getDefaultDirectives(),
-        'img-src': ["'self'", 'data:', 'blob:', 'https:'],
-      },
-    },
-  })
+    helmet({
+        // Allow HF Spaces to embed the app inside its iframe
+        frameguard: false,
+        contentSecurityPolicy: {
+            directives: {
+                ...helmet.contentSecurityPolicy.getDefaultDirectives(),
+                'img-src': ["'self'", 'data:', 'blob:', 'https:'],
+                // Allow any origin to frame this app (needed for HF Spaces iframe)
+                'frame-ancestors': ['*'],
+            },
+        },
+    })
 );
 const isProd = process.env.NODE_ENV === 'production';
 app.use(
-  cors({
-    origin: (origin, callback) => {
-      // In dev, allow the incoming origin so cookie credentials work reliably.
-      if (!isProd) return callback(null, true);
-      if (!origin) return callback(null, false);
-      const allowed = process.env.FRONTEND_ORIGIN || 'http://localhost:5173';
-      return callback(null, origin === allowed);
-    },
-    credentials: true,
-  })
+    cors({
+        origin: (origin, callback) => {
+            // In dev, allow the incoming origin so cookie credentials work reliably.
+            if (!isProd) return callback(null, true);
+            if (!origin) return callback(null, false);
+            const allowed = process.env.FRONTEND_ORIGIN || 'http://localhost:5173';
+            return callback(null, origin === allowed);
+        },
+        credentials: true,
+    })
 );
 app.use(express.json());
 app.use(cookieParser());
@@ -57,11 +61,11 @@ let inMemoryUserSeq = 1;
 let inMemoryReportSeq = 1;
 
 if (USE_MONGO) {
-  mongoose.connect(MONGO_URI)
-    .then(() => console.log("✅ MongoDB Connected"))
-    .catch((err) => console.error("❌ DB Connection Error:", err));
+    mongoose.connect(MONGO_URI)
+        .then(() => console.log("✅ MongoDB Connected"))
+        .catch((err) => console.error("❌ DB Connection Error:", err));
 } else {
-  console.warn('⚠️ MONGO_URI not set. Using in-memory auth + history (dev only).');
+    console.warn('⚠️ MONGO_URI not set. Using in-memory auth + history (dev only).');
 }
 
 // --- 2. DATABASE SCHEMA (Patient History) ---
@@ -236,7 +240,7 @@ app.post('/api/analyze', requireAuth, upload.single('image'), async (req, res) =
         // A. PREPARE DATA FOR PYTHON API
         const formData = new FormData();
         formData.append('file', fs.createReadStream(filePath));
-        
+
         // Add extra fields if it's Skin Cancer
         if (module === 'skin') {
             formData.append('age', age);
@@ -330,10 +334,10 @@ app.get('/api/history', requireAuth, async (req, res) => {
 
 const path = require('path');
 if (process.env.NODE_ENV === 'production') {
-  app.use(express.static(path.join(__dirname, 'public')));
-  app.get(/(.*)/, (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'index.html'));
-  });
+    app.use(express.static(path.join(__dirname, 'public')));
+    app.get(/(.*)/, (req, res) => {
+        res.sendFile(path.join(__dirname, 'public', 'index.html'));
+    });
 }
 
 app.listen(PORT, () => console.log(`🚀 Node Server running on port ${PORT}`));
