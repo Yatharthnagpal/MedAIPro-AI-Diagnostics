@@ -13,7 +13,7 @@ app_port: 7860
 # 🧠 MedAI Pro
 ### AI-powered Medical Imaging & Sepsis Risk Prediction Platform
 
-🚀 **Live App:** https://rawatashu26-medai.hf.space/
+🚀 **Live App:** https://huggingface.co/spaces/Yatharthnagpal/MedAI
 
 </div>
 

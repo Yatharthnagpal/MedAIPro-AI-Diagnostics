@@ -2,8 +2,8 @@ fastapi==0.109.0
 uvicorn==0.27.0
 python-multipart==0.0.9
 torch
-torchvision==0.17.0
-tensorflow==2.16.1
+torchvision
+tensorflow
 # Match version used when ml_artifacts.pkl was trained (avoids InconsistentVersionWarning / pickle drift)
 scikit-learn==1.2.2
 pandas==2.2.0
