@@ -144,7 +144,7 @@ MedAI/
 ### Option 1: Docker (Recommended)
 
 ```bash
-git clone https://github.com/Yatharthnagpal/MedAI.git
+git clone https://github.com/Yatharthnagpal/MedAI-AI-powered-CDSS-portal.git
 cd MedAI
 docker build -t medai .
 docker run -p 7860:7860 \
@@ -218,5 +218,5 @@ This project is for educational and research purposes.
 ---
 
 <div align="center">
-Made with ❤️ by <a href="https://github.com/Yatharthnagpal">Yatharth Nagpal</a>
+Made with ❤️ by <a href="https://github.com/Yatharthnagpal">Yatharth Nagpal</a> · <a href="https://huggingface.co/spaces/Yatharthnagpal/MedAI">🚀 Live Demo</a> · <a href="https://github.com/Yatharthnagpal/MedAI-AI-powered-CDSS-portal">⭐ Star on GitHub</a>
 </div>
